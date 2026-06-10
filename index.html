@@ -35,17 +35,16 @@
         }
 
         h1 {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 700;
-            color: #00FF26;
+            color: #FFFFFF;
             margin-bottom: 16px;
             letter-spacing: -1px;
         }
 
         p {
-            font-size: 18px;
+            font-size: 14px;
             color: #FFFFFF;
-            opacity: 0.7;
             max-width: 400px;
             line-height: 1.6;
             margin-bottom: 40px;
@@ -74,12 +73,73 @@
     stroke: none;
 }
 
+.hero-tagline {
+    margin: 20px auto;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.name-carousel {
+    perspective: 800px;
+    width: 140px;          /* fixed width stops shifting */
+    display: inline-block;
+    text-align: center;
+}
+
+#name {
+    display: inline-block;
+    color: #00FF26;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.flip {
+    animation: flipX 0.7s ease;
+}
+
+@keyframes flipX {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+.hero-tagline {
+    font-size: 30px;
+}
+
     </style>
 </head>
 
 <body>
     <img src="FixAmForMe.png" alt="FixAmForMe Logo" class="logo">
+    <div class="hero-tagline">
+        <span id="before"></span>
+        <div class="name-carousel">
+            <span id="name"></span>
+        </div>
+        <span id="after"></span>
+    </div>
     <h1>Coming Soon</h1>
+    
     <p>Your mechanic. Your way. We're working hard to bring you the easiest way to find trusted mechanics in Ghana.</p>
     <div class="social">
     <a href="https://instagram.com/fixamforme" target="_blank" aria-label="Follow us on Instagram">
@@ -95,6 +155,114 @@
         </svg>
     </a>
 </div>
+
+<script>
+        const templates = [
+    "Good news. {name} is on the way.",
+    "Relax. {name} has it covered.",
+    "{name} to the rescue.",
+    "{name} knows what's wrong.",
+    "When it matters, call {name}.",
+    "{name} is already on the way.",
+    "{name} will be there shortly.",
+    "No stress. {name} is coming.",
+    "{name} go fix am."
+];
+
+// pick ONE per session
+let template = sessionStorage.getItem("heroTemplate");
+
+if (!template) {
+    template = templates[Math.floor(Math.random() * templates.length)];
+    sessionStorage.setItem("heroTemplate", template);
+}
+
+// split into before/after
+const parts = template.split("{name}");
+
+document.getElementById("before").textContent = parts[0];
+document.getElementById("after").textContent = parts[1];
+
+        const names = [
+/* Akan */
+"Kwame","Kofi","Kojo","Kwadwo","Kwabena","Yaw","Kwaku","Akwasi",
+"Ama","Akosua","Abena","Adwoa","Yaa","Afia","Efua","Akua","Esi",
+"Nana","Osei","Boateng",
+
+/* Ewe */
+"Dzifa","Emefa","Selorm","Kafui","Mawuli","Edem","Delali","Amewuga",
+"Komla","Fiavi","Senanu","Agbenyo","Agbemafle","Dela","Amevi",
+
+/* Ga-Adangbe */
+"Naa","Akweley","Korkor","Adoley","Shika","Tetteh","Lartey","Quartey",
+"Lamptey","Ashitey","Ayele","Laweh","Naa Dede","Dede","Mensah",
+
+/* Northern Ghana */
+"Iddrisu","Yakubu","Seidu","Sulemana","Abdulai","Ziblim","Yahaya",
+"Issahaku","Alhassan","Murtala","Hamza","Zakaria","Osman","Ibrahim","Adam",
+
+/* Gonja / Northern Belt */
+"Sumaila","Fuseini","Yussif","Mahama","Salifu","Musah","Alidu",
+"Sule","Haruna","Nurudeen",
+
+/* Upper West / Upper East */
+"Wuni","Atampuba","Balinia","Kanton","Billa","Abubakar","Issaka",
+"Tanko","Zuwera",
+
+/* Widely used Ghanaian surnames (kept as first-name style tokens) */
+"Ofori","Mensah","Appiah","Addo","Owusu","Asamoah","Antwi","Darko",
+"Boadi","Nyarko","Frimpong","Asiedu","Baffoe","Agyemang","Aboagye",
+
+"Emmanuel","Elijah","David","Daniel","Joseph","John","Samuel","Michael","Peter","Paul",
+"Isaac","Joshua"
+];
+
+        const nameEl = document.getElementById("name");
+
+let shuffledNames = [];
+let index = 0;
+
+function shuffle(array) {
+    return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+}
+
+function initNames() {
+    shuffledNames = shuffle([...names]);
+    index = 0;
+}
+
+function rotateName() {
+    nameEl.classList.add("flip");
+
+    setTimeout(() => {
+        nameEl.textContent = shuffledNames[index];
+        index++;
+
+        if (index >= shuffledNames.length) {
+            initNames();
+        }
+    }, 350);
+
+    setTimeout(() => {
+        nameEl.classList.remove("flip");
+    }, 700);
+}
+
+// start
+initNames();
+function initNames() {
+    shuffledNames = shuffle([...names]);
+    index = 0;
+
+    // set first name immediately (only here)
+    document.getElementById("name").textContent = shuffledNames[index];
+    index++;
+}
+setInterval(rotateName, 2500);
+    </script>
 </body>
 
 </html>
