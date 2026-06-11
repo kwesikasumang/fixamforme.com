@@ -17,39 +17,43 @@
         }
 
         body {
-            background-color: #000000;
-            color: #FFFFFF;
+            background-color: #000;
+            color: #fff;
             font-family: 'Space Grotesk', sans-serif;
             min-height: 100vh;
 
             display: flex;
             flex-direction: column;
             align-items: center;
-            /*justify-content: center;*/
 
             padding: 20px;
-
-            text-align: left;
-            /* change this */
         }
 
         .main {
             width: min(1000px, 90vw);
-            margin: auto 0;
-            /* THIS is the magic */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+
+            flex: 1;
+
+            justify-content: center;
         }
 
         .top,
         .bottom {
             display: flex;
             justify-content: center;
+            width: 100%;
+        }
+
+        .bottom {
+            margin-top: auto;
         }
 
         .logo {
             width: 200px;
+            height: 200px;
             margin-bottom: 0px;
         }
 
@@ -181,7 +185,7 @@
 
 <body>
     <div class="top">
-        <img src="FixAmForMe.png" alt="FixAmForMe Logo" class="logo">
+        <img src="FixAmForMe.png" alt="FixAmForMe Logo" class="logo" width="200" height="200">
     </div>
     <div class="main">
 
@@ -282,11 +286,13 @@
             /* Akan */
             "Kwame", "Kofi", "Kojo", "Kwadwo", "Kwabena", "Yaw", "Kwaku", "Akwasi",
             "Ama", "Akosua", "Abena", "Adwoa", "Yaa", "Afia", "Efua", "Akua", "Esi",
-            "Nana", "Osei", "Boateng",
+            "Nana", "Osei", "Boateng", "Abenaa", "Osafoaa", "Asantewaa", "Coby", 
+            "Delasi", "Selasi", "Aferi", "Ewuku", "Kweku", "Dayshin", "Nana Yaw",
+            "Jude", "Kobina", "Sinead", "Nana Ama",
 
             /* Ewe */
             "Dzifa", "Emefa", "Selorm", "Kafui", "Mawuli", "Edem", "Delali", "Amewuga",
-            "Komla", "Fiavi", "Senanu", "Agbenyo", "Agbemafle", "Dela", "Amevi",
+            "Komla", "Fiavi", "Senanu", "Agbenyo", "Agbemafle", "Dela", "Amevi", 
 
             /* Ga-Adangbe */
             "Naa", "Akweley", "Korkor", "Adoley", "Shika", "Tetteh", "Lartey", "Quartey",
@@ -309,7 +315,7 @@
             "Boadi", "Nyarko", "Frimpong", "Asiedu", "Baffoe", "Agyemang", "Aboagye",
 
             "Emmanuel", "Elijah", "David", "Daniel", "Joseph", "John", "Samuel", "Michael", "Peter", "Paul",
-            "Isaac", "Joshua"
+            "Isaac", "Joshua", "Blessing"
         ];
 
         const text = `Your mechanic. Your way. We're working hard to bring you the easiest way to find trusted mechanics in Ghana.`;
