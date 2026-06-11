@@ -149,9 +149,9 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            font-size: 1.5rem;
+            font-size: 4.0rem;
             font-weight: 600;
-            gap: 0.35rem;
+            gap: 1.0rem;
 
             transition: all 0.3s ease;
             /* smooth layout shifts */
@@ -265,18 +265,22 @@
         function initNames() {
             shuffledNames = shuffle([...names]);
             index = 0;
+
+            // show first name immediately
+            nameEl.textContent = shuffledNames[index];
+            index++;
         }
 
         function rotateName() {
             nameEl.classList.add("flip");
 
             setTimeout(() => {
-                nameEl.textContent = shuffledNames[index];
-                index++;
-
                 if (index >= shuffledNames.length) {
                     initNames();
                 }
+
+                nameEl.textContent = shuffledNames[index];
+                index++;
             }, 350);
 
             setTimeout(() => {
@@ -286,14 +290,7 @@
 
         // start
         initNames();
-        function initNames() {
-            shuffledNames = shuffle([...names]);
-            index = 0;
-
-            // set first name immediately (only here)
-            document.getElementById("name").textContent = shuffledNames[index];
-            index++;
-        }
+        
         setInterval(rotateName, 2500);
     </script>
 </body>
