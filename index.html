@@ -21,12 +21,31 @@
             color: #FFFFFF;
             font-family: 'Space Grotesk', sans-serif;
             min-height: 100vh;
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            /*justify-content: center;*/
+
             padding: 20px;
+
+            text-align: left;
+            /* change this */
+        }
+
+        .main {
+            width: min(1000px, 90vw);
+            margin: auto 0;
+            /* THIS is the magic */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .top,
+        .bottom {
+            display: flex;
+            justify-content: center;
         }
 
         .logo {
@@ -34,21 +53,15 @@
             margin-bottom: 0px;
         }
 
-        h1 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 16px;
-            /*letter-spacing: -1px;*/
-        }
-
         p {
-            font-size: 14px;
+            font-size: 25px;
             color: #FFFFFF;
             max-width: 400px;
             font-weight: 700;
             line-height: 1.6;
             margin-bottom: 20px;
+            text-align: left;
+            line-height: 1;
         }
 
         .social {
@@ -76,17 +89,27 @@
         }
 
         .hero-tagline {
-            margin: 20px auto;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: white;
-
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.35rem;
-            flex-wrap: wrap;
-            text-align: center;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+
+            font-size: clamp(2.5rem, 6.5vw, 10rem);
+            font-weight: 600;
+            gap: 0rem;
+
+            line-height: 0.85;
+            margin-bottom: 30px;
+        }
+
+        #start,
+        #end {
+            text-transform: uppercase;
+        }
+
+        #name {
+            color: #00FF26;
+            text-transform: uppercase;
         }
 
 
@@ -118,6 +141,15 @@
             transition: transform 0.25s ease, opacity 0.25s ease;
         }
 
+        #tagline {
+            min-height: calc(25px * 4);
+            /* 3 lines worth of text */
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
+        }
+
         .flip {
             animation: flipX 0.7s ease;
         }
@@ -144,81 +176,107 @@
             font-size: 30px;
         }
         */
-
-        .hero-tagline {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 4.0rem;
-            font-weight: 600;
-            gap: 1.0rem;
-
-            transition: all 0.3s ease;
-            /* smooth layout shifts */
-        }
     </style>
 </head>
 
 <body>
-    <img src="FixAmForMe.png" alt="FixAmForMe Logo" class="logo">
-    
-    <div class="hero-tagline">
-        <span id="before"></span>
-        <div class="name-carousel">
-            <span id="name"></span>
+    <div class="top">
+        <img src="FixAmForMe.png" alt="FixAmForMe Logo" class="logo">
+    </div>
+    <div class="main">
+
+
+        <div class="hero-tagline">
+            <div id="start"></div>
+
+            <div class="name-carousel">
+                <span id="name"></span>
+            </div>
+
+            <div id="end"></div>
         </div>
-        <span id="after"></span>
-    </div>
-    
 
-    <p>Your mechanic. Your way. We're working hard to bring you the easiest way to find trusted mechanics in Ghana.</p>
 
-    <h1>Coming Soon</h1>
-    <div class="social">
-        <a href="https://instagram.com/fixamforme" target="_blank" aria-label="Follow us on Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="#00FF26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.5" fill="#00FF26" />
-            </svg>
-        </a>
-        <a href="https://x.com/fixamforme" target="_blank" aria-label="Follow us on X">
-            <svg class="x-logo" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                fill="#00FF26">
-                <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-        </a>
+        <p id="tagline">Your mechanic. Your way. We're working hard to bring you the easiest way to find trusted
+            mechanics in Ghana.
+        </p>
+
     </div>
+    <div class="bottom">
+        <div class="social">
+            <a href="https://instagram.com/fixamforme" target="_blank" aria-label="Follow us on Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="#00FF26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="#00FF26" />
+                </svg>
+            </a>
+            <a href="https://x.com/fixamforme" target="_blank" aria-label="Follow us on X">
+                <svg class="x-logo" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="#00FF26">
+                    <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
 
     <script>
         const templates = [
-            "Good news. {name} is on the way",
-            "Relax. {name} has it covered",
-            "{name} to the rescue",
-            "{name} knows what's wrong",
-            "When it matters, call {name}",
-            "{name} is already on the way",
-            "{name} will be there shortly",
-            "No stress. {name} is coming",
-            "{name} go fix am"
+            {
+                start: "GOOD NEWS.",
+                end: "IS ON THE WAY"
+            },
+            {
+                start: "RELAX.",
+                end: "HAS IT COVERED"
+            },
+            {
+                start: "",
+                end: "TO THE RESCUE"
+            },
+            {
+                start: "",
+                end: "KNOWS WHAT'S WRONG"
+            },
+            {
+                start: "WHEN IT MATTERS, CALL",
+                end: ""
+            },
+            {
+                start: "",
+                end: "IS ALREADY ON THE WAY"
+            },
+            {
+                start: "",
+                end: "WILL BE THERE SHORTLY"
+            },
+            {
+                start: "NO STRESS.",
+                end: "IS COMING"
+            },
+            {
+                start: "",
+                end: "GO FIX AM"
+            }
         ];
 
         // pick ONE per session
         let template = sessionStorage.getItem("heroTemplate");
 
         if (!template) {
-            template = templates[Math.floor(Math.random() * templates.length)];
+            template = JSON.stringify(
+                templates[Math.floor(Math.random() * templates.length)]
+            );
             sessionStorage.setItem("heroTemplate", template);
         }
 
-        // split into before/after
-        const parts = template.split("{name}");
+        template = JSON.parse(template);
 
-        document.getElementById("before").textContent = parts[0];
-        document.getElementById("after").textContent = parts[1];
+        document.getElementById("start").textContent = template.start;
+        document.getElementById("end").textContent = template.end;
 
         const names = [
             /* Akan */
@@ -254,10 +312,28 @@
             "Isaac", "Joshua"
         ];
 
+        const text = `Your mechanic. Your way. We're working hard to bring you the easiest way to find trusted mechanics in Ghana.`;
+        const el = document.getElementById("tagline");
+
         const nameEl = document.getElementById("name");
 
         let shuffledNames = [];
         let index = 0;
+
+        const words = text.split(" ");
+        el.innerHTML = "";
+
+        let i = 0;
+
+        function showWord() {
+            if (i < words.length) {
+                el.innerHTML += words[i] + " ";
+                i++;
+                setTimeout(showWord, 90); // speed control
+            }
+        }
+
+
 
         function shuffle(array) {
             return array
@@ -294,7 +370,18 @@
 
         // start
         initNames();
-        
+
+        // wait 1 frame so CSS initial state is applied
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                el.style.opacity = 1;
+                el.style.transform = "translateY(0)";
+            });
+
+            showWord();
+        });
+
+
         setInterval(rotateName, 2500);
     </script>
 </body>
