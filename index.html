@@ -113,6 +113,8 @@
             display: inline-block;
             white-space: nowrap;
             color: #00FF26;
+
+            transition: transform 0.25s ease, opacity 0.25s ease;
         }
 
         .flip {
@@ -136,8 +138,23 @@
             }
         }
 
+        /*
         .hero-tagline {
             font-size: 30px;
+        }
+        */
+
+        .hero-tagline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 1.5rem;
+            font-weight: 600;
+            gap: 0.35rem;
+
+            transition: all 0.3s ease;
+            /* smooth layout shifts */
         }
     </style>
 </head>
